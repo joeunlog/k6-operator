@@ -1,0 +1,32 @@
+serviceAccount:
+  create: true
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+
+kubeRbacProxy:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+    requests:
+      cpu: 100m
+      memory: 50Mi
+
+manager:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+    requests:
+      cpu: 100m
+      memory: 50Mi      
+
+affinity: {}
+
+prometheus:
+  use: true
+  prometheusLabel:
+    release: kube-prometheus-stack

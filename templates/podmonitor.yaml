@@ -1,0 +1,17 @@
+{{- if .Values.prometheus.use -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: k6-monitor
+  namespace: {{ include "k6-operator.namespace" . }}
+  {{- with .Values.prometheus.prometheusLabel }}
+  labels:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  selector:
+    matchLabels:
+      app: k6
+  podMetricsEndpoints:
+  - port: metrics
+{{- end -}}
