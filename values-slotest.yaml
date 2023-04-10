@@ -1,0 +1,4 @@
+prometheus:
+  use: true
+  prometheusLabel:
+    release: prometheus-release
